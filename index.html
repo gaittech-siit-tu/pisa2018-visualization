@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" translate="no" class="notranslate">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="google" content="notranslate">
+	<title>PISA 2018</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+	<script type="text/javascript">
+		const options = [
+			'ST001D01T', 'ST003D02T', 'ST003D03T', 'ST004D01T', 'ST005Q01TA', 'ST006Q01TA', 'ST006Q02TA', 'ST006Q03TA',
+			'ST006Q04TA', 'ST007Q01TA', 'ST008Q01TA', 'ST008Q02TA', 'ST008Q03TA', 'ST008Q04TA', 'ST011D17TA', 'ST011D18TA',
+			'ST011D19TA', 'ST011Q01TA', 'ST011Q02TA', 'ST011Q03TA', 'ST011Q04TA', 'ST011Q05TA', 'ST011Q06TA', 'ST011Q07TA',
+			'ST011Q08TA', 'ST011Q09TA', 'ST011Q10TA', 'ST011Q11TA', 'ST011Q12TA', 'ST011Q16NA', 'ST012Q01TA', 'ST012Q02TA',
+			'ST012Q03TA', 'ST012Q05NA', 'ST012Q06NA', 'ST012Q07NA', 'ST012Q08NA', 'ST012Q09NA', 'ST013Q01TA', 'ST016Q01NA',
+			'ST019AQ01T', 'ST019BQ01T', 'ST019CQ01T', 'ST021Q01TA', 'ST022Q01TA', 'ST023Q01TA', 'ST023Q02TA', 'ST023Q03TA',
+			'ST023Q04TA', 'ST023Q05TA', 'ST034Q01TA', 'ST034Q02TA', 'ST034Q03TA', 'ST034Q04TA', 'ST034Q05TA', 'ST034Q06TA',
+			'ST036Q05TA', 'ST036Q06TA', 'ST036Q08TA', 'ST038Q03NA', 'ST038Q04NA', 'ST038Q05NA', 'ST038Q06NA', 'ST038Q07NA',
+			'ST038Q08NA', 'ST059Q01TA', 'ST059Q02TA', 'ST059Q03TA', 'ST059Q04HA', 'ST060Q01NA', 'ST061Q01NA', 'ST062Q01TA',
+			'ST062Q02TA', 'ST062Q03TA', 'ST097Q01TA', 'ST097Q02TA', 'ST097Q03TA', 'ST097Q04TA', 'ST097Q05TA', 'ST100Q01TA',
+			'ST100Q02TA', 'ST100Q03TA', 'ST100Q04TA', 'ST102Q01TA', 'ST102Q02TA', 'ST102Q03TA', 'ST102Q04TA', 'ST104Q02NA',
+			'ST104Q03NA', 'ST104Q04NA', 'ST123Q02NA', 'ST123Q03NA', 'ST123Q04NA', 'ST125Q01NA', 'ST126Q01TA', 'ST127Q01TA',
+			'ST127Q02TA', 'ST127Q03TA', 'ST150Q01IA', 'ST150Q02IA', 'ST150Q03IA', 'ST150Q04HA', 'ST152Q05IA', 'ST152Q06IA',
+			'ST152Q07IA', 'ST152Q08IA', 'ST153Q01HA', 'ST153Q02HA', 'ST153Q03HA', 'ST153Q04HA', 'ST153Q05HA', 'ST153Q06HA',
+			'ST153Q08HA', 'ST153Q09HA', 'ST153Q10HA', 'ST154Q01HA', 'ST158Q01HA', 'ST158Q02HA', 'ST158Q03HA', 'ST158Q04HA',
+			'ST158Q05HA', 'ST158Q06HA', 'ST158Q07HA', 'ST160Q01IA', 'ST160Q02IA', 'ST160Q03IA', 'ST160Q04IA', 'ST160Q05IA',
+			'ST161Q01HA', 'ST161Q02HA', 'ST161Q03HA', 'ST161Q06HA', 'ST161Q07HA', 'ST161Q08HA', 'ST163Q02HA', 'ST163Q03HA',
+			'ST163Q04HA', 'ST164Q01IA', 'ST164Q02IA', 'ST164Q03IA', 'ST164Q04IA', 'ST164Q05IA', 'ST164Q06IA', 'ST165Q01IA',
+			'ST165Q02IA', 'ST165Q03IA', 'ST165Q04IA', 'ST165Q05IA', 'ST166Q01HA', 'ST166Q02HA', 'ST166Q03HA', 'ST166Q04HA',
+			'ST166Q05HA', 'ST167Q01IA', 'ST167Q02IA', 'ST167Q03IA', 'ST167Q04IA', 'ST167Q05IA', 'ST168Q01HA', 'ST175Q01IA',
+			'ST176Q01IA', 'ST176Q02IA', 'ST176Q03IA', 'ST176Q05IA', 'ST176Q06IA', 'ST176Q07IA', 'ST177Q01HA', 'ST177Q02HA',
+			'ST177Q03HA', 'ST181Q02HA', 'ST181Q03HA', 'ST181Q04HA', 'ST182Q03HA', 'ST182Q04HA', 'ST182Q05HA', 'ST182Q06HA',
+			'ST183Q01HA', 'ST183Q02HA', 'ST183Q03HA', 'ST184Q01HA', 'ST185Q01HA', 'ST185Q02HA', 'ST185Q03HA', 'ST186Q01HA',
+			'ST186Q02HA', 'ST186Q03HA', 'ST186Q05HA', 'ST186Q06HA', 'ST186Q07HA', 'ST186Q08HA', 'ST186Q09HA', 'ST186Q10HA',
+			'ST188Q01HA', 'ST188Q02HA', 'ST188Q03HA', 'ST188Q06HA', 'ST188Q07HA', 'ST189Q01HA', 'ST196Q02HA', 'ST196Q03HA',
+			'ST196Q04HA', 'ST196Q05HA', 'ST196Q06HA', 'ST196Q07HA', 'ST197Q01HA', 'ST197Q02HA', 'ST197Q04HA', 'ST197Q07HA',
+			'ST197Q08HA', 'ST197Q09HA', 'ST197Q12HA', 'ST204Q02HA', 'ST204Q03HA', 'ST204Q04HA', 'ST204Q05HA', 'ST205Q01HA',
+			'ST205Q02HA', 'ST205Q03HA', 'ST205Q04HA', 'ST206Q01HA', 'ST206Q02HA', 'ST206Q03HA', 'ST206Q04HA', 'ST207Q01HA',
+			'ST207Q02HA', 'ST207Q03HA', 'ST207Q04HA', 'ST207Q05HA', 'ST208Q01HA', 'ST208Q02HA', 'ST208Q04HA', 'ST211Q01HA',
+			'ST211Q02HA', 'ST211Q03HA', 'ST212Q01HA', 'ST212Q02HA', 'ST212Q03HA', 'ST213Q01HA', 'ST213Q02HA', 'ST213Q03HA',
+			'ST213Q04HA', 'ST214Q01HA', 'ST214Q02HA', 'ST214Q03HA', 'ST214Q06HA', 'ST215Q01HA', 'ST215Q02HA', 'ST215Q03HA',
+			'ST215Q04HA', 'ST215Q05HA', 'ST216Q01HA', 'ST216Q02HA', 'ST216Q03HA', 'ST216Q04HA', 'ST216Q05HA', 'ST216Q06HA',
+			'ST217Q01HA', 'ST217Q02HA', 'ST217Q03HA', 'ST217Q04HA', 'ST217Q05HA', 'ST218Q01HA', 'ST218Q02HA', 'ST218Q03HA',
+			'ST218Q04HA', 'ST218Q05HA', 'ST218Q06HA', 'ST218Q07HA', 'ST219Q01HA', 'ST219Q02HA', 'ST219Q03HA', 'ST219Q04HA',
+			'ST219Q05HA', 'ST219Q06HA', 'ST220Q01HA', 'ST220Q02HA', 'ST220Q03HA', 'ST220Q04HA', 'ST221Q01HA', 'ST221Q02HA',
+			'ST221Q03HA', 'ST221Q04HA', 'ST221Q05HA', 'ST221Q06HA', 'ST221Q07HA', 'ST221Q08HA', 'ST221Q09HA', 'ST221Q11HA',
+			'ST222Q01HA', 'ST222Q03HA', 'ST222Q04HA', 'ST222Q05HA', 'ST222Q06HA', 'ST222Q08HA', 'ST222Q09HA', 'ST222Q10HA',
+			'ST223Q02HA', 'ST223Q04HA', 'ST223Q05HA', 'ST223Q08HA', 'ST225Q01HA', 'ST225Q02HA', 'ST225Q03HA', 'ST225Q04HA',
+			'ST225Q05HA', 'ST225Q06HA']; 
+		var currentOption = 'ST004D01T';
+		$(document).ready(function() {
+			var optionSelect = document.getElementById("optionSelect");
+			for(const opt of options) {
+				var optionTag = document.createElement("option");
+				optionTag.text = opt;
+				optionTag.value = opt;
+				optionSelect.add(optionTag);
+			}
+			$("#optionSelect").change(function() {
+				const selected = $(this).val();
+				currentOption = selected;
+				$("#plotImg").attr("src", `plot_${currentOption}.png`);
+			})
+		});
+	</script>
+</head>
+
+<body>
+	<div class="px-4 py-5 my-5 text-center">
+		<h1 class="display-5 fw-bold">PISA 2018 Visualization – Thailand</h1>
+		<h4 class="pb-4">Created by C. Nattee and N. Khamsemanan, GaitTech, SIIT, Thammasat University, Thailand</h4>
+		<div class="pt-4 row justify-content-center">
+			<div class="col-md-3">
+				<select id="optionSelect" class="form-select mb-3" aria-label="variable">
+					<option value="ST004D01T" selected>PISA 2018 Student Questionnaire Item</option>
+				</select>
+			</div>
+		</div>
+		<div class="pt-4 row justify-content-center">
+			<div class="col-md-6">
+				<p>
+				Description of the items can be found at <a href="https://www.oecd.org/pisa/data/2018database/">https://www.oecd.org/pisa/data/2018database/</a>
+				</p>
+			</div>
+		</div>
+		<div class="py-4">
+			<img id="plotImg" src="plot_ST004D01T.png" class="img-fluid" />
+		</div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>
